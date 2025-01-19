@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Artist's Page</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="header-text-box">
+            <h1>Vincent van Gogh</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li onclick="showSection('biography')">Biography</li>
+            <li onclick="showSection('paintings')">Paintings</li>
+            <li onclick="showSection('exhibitions')">Exhibitions</li>
+            <li onclick="showSection('links')">Links</li>
+            <li onclick="showSection('admin')">Administration</li>
+        </ul>
+    </nav>
+
+    <aside id="side-menu">
+
+        <div id="biography-menu" class="hidden">
+            <ul>
+                <li onclick="showSubSection('life')">Life</li>
+                <li onclick="showSubSection('style')">Style</li>
+                <li onclick="showSubSection('reputation')">Reputation</li>
+            </ul>
+        </div>
+
+        <div id="paintings-menu" class="hidden">
+            <ul>
+                <li onclick="showPaintingSection('portraits')">Portraits</li>
+                <li onclick="showPaintingSection('nature')">Nature</li>
+            </ul>
+        </div>
+
+        <div id="exhibitions-menu" class="hidden">
+            <ul>
+                <li data-category="past" onclick="fetchLinks('past')">Past Exhibitions</li>
+                <li data-category="present" onclick="fetchLinks('present')">Current Exhibitions</li>
+                <li data-category="future" onclick="fetchLinks('future')">Upcoming Exhibitions</li>
+            </ul>
+        </div>
+
+        <div id="links-menu" class="hidden">
+            <ul>
+                <li data-category="videos" onclick="fetchLinks('videos')">Videos</li>
+                <li data-category="text" onclick="fetchLinks('text')">Text</li>
+                <li data-category="images" onclick="fetchLinks('images')">Images</li>
+            </ul>
+        </div>
+
+        <div id="admin-menu">
+            <ul>
+                <li id="login-section">
+                    <h3>Login</h3>
+                    <input type="text" id="username" placeholder="Username" />
+                    <input type="password" id="password" placeholder="Password" />
+                    <button onclick="handleLogin()">Login</button>
+                </li>
+        
+                <li id="logout-section" class="hidden">
+                    <h3>Welcome, Admin</h3>
+                    <button onclick="handleLogout()">Logout</button>
+                </li>
+        
+                <li id="admin-controls" class="hidden">
+                    <h3>Admin Actions</h3>
+                    <button id="edit-links-btn" onclick="toggleEditSection('links')">Edit Links</button>
+                    <button id="edit-exhibitions-btn" onclick="toggleEditSection('exhibitions')">Edit Exhibitions</button>
+                </li>
+            </ul>
+
+    </aside>
+
+    <main id="content">
+
+        <div id="biography-content" class="hidden">
+            <h2>Biography</h2>
+            <p>
+                <strong>Willem van Gogh (30 March 1853 – 29 July 1890)</strong> was a Dutch Post-Impressionist painter who is among the most famous and influential figures in the history of Western art. 
+                In just over a decade, he created approximately 2,100 artworks, including around 860 oil paintings, most of them in the last two years of his life.
+            </p>
+            <div id="life-content" class="hidden">
+                <h2>Life</h2>
+                <p>
+                    Vincent Willem van Gogh was born on 30 March 1853 in Groot-Zundert, in the predominantly Catholic province of North Brabant in the Netherlands. He was the oldest surviving child of Theodorus van Gogh (1822–1885), a minister of the Dutch Reformed Church, and his wife, Anna Cornelia Carbentus (1819–1907). 
+                    Van Gogh was given the name of his grandfather and of a brother stillborn exactly a year before his birth. His grandfather, Vincent (1789–1874), was a prominent art dealer and a theology graduate from the University of Leiden in 1811. 
+                    This Vincent had six sons, three of whom became art dealers, and may have been named after his great-uncle, a sculptor (1729–1802).
+                </p>
+            </div>
+            <div id="style-content" class="hidden">
+                <h2>Style</h2>
+                <p>
+                    Van Gogh drew and painted with watercolours while at school, but only a few examples survive and the authorship of some has been challenged. When he took up art as an adult, he began at an elementary level. 
+                    In early 1882, his uncle, Cornelis Marinus, owner of a well-known gallery of contemporary art in Amsterdam, asked for drawings of The Hague. Van Gogh's work did not live up to expectations. Marinus offered a second commission, specifying the subject matter in detail, but was again disappointed with the result. Van Gogh persevered; he experimented with lighting in his studio using variable shutters and different drawing materials. 
+                    For more than a year he worked on single figures – highly elaborate studies in black and white, which at the time gained him only criticism. Later, they were recognised as early masterpieces.
+                </p>
+            </div>
+            <div id="reputation-content" class="hidden">
+                <h2>Reputation</h2>
+                <p>
+                    After Van Gogh's first exhibitions in the late 1880s, his reputation grew steadily among artists, art critics, dealers and collectors. 
+                    In 1887, André Antoine hung Van Gogh's alongside works of Georges Seurat and Paul Signac, at the Théâtre Libre in Paris; some were acquired by Julien Tanguy. 
+                    In 1889, his work was described in the journal Le Moderniste Illustré by Albert Aurier as characterised by "fire, intensity, sunshine". 
+                    Ten paintings were shown at the Société des Artistes Indépendants, in Brussels in January 1890. 
+                    French president Marie François Sadi Carnot was said to have been impressed by Van Gogh's work.
+                </p>
+            </div>
+        </div>
+
+        <div id="paintings-content" class="hidden">
+
+                <div id="portraits-content" class="hidden">
+                    <div id="paintings-container" class="flex-container">
+                        <div class="flex-item"><img src="./img/Portrait1.jpeg" alt="Portrait Painting 1"></div>
+                        <div class="flex-item"><img src="./img/Portrait2.jpeg" alt="Portrait Painting 2"></div>
+                        <div class="flex-item"><img src="./img/Portrait3.jpg" alt="Portrait Painting 3"></div>
+                    </div>
+                </div>
+                <div id="nature-content" class="hidden">
+                    <div id="paintings-container" class="flex-container">
+                        <div class="flex-item"><img src="./img/Nature1.jpeg" alt="Nature Painting 1"></div>
+                        <div class="flex-item"><img src="./img/Nature2.jpeg" alt="Nature Painting 2"></div>
+                        <div class="flex-item"><img src="./img/Nature3.jpg" alt="Nature Painting 3"></div>
+                    </div>
+                </div>
+
+        </div>
+
+        <div id="exhibitions-content" class="hidden">
+            <h2>Exhibitions</h2>
+        </div>
+
+        <div id="links-content" class="hidden">
+            <h2>Links</h2>
+        </div>
+
+        <div id="admin-content" class="hidden">
+            <h2>Admin Panel</h2>
+            <div id="add-link-content" class="hidden">
+                <h2>Edit Links</h2>
+                <form id="add-link-form">
+                    <h4>Add Link</h4>
+                    <input type="text" id="link-title" placeholder="Title" required />
+                    <input type="text" id="link-url" placeholder="URL" required />
+                    <select id="link-category">
+                        <option value="videos">Videos</option>
+                        <option value="text">Text</option>
+                        <option value="images">Images</option>
+                    </select>
+                    <button type="button" onclick="addLink()">Add Link</button>
+                </form>
+            </div>
+
+            <div id="add-exhibition-content" class="hidden">
+                <h2>Edit Exhibitions</h2>
+                <form id="add-exhibition-form">
+                    <h4>Add Exhibition</h4>
+                    <input type="text" id="exhibition-title" placeholder="Title" required />
+                    <input type="text" id="exhibition-location" placeholder="Location" required />
+                    <input type="date" id="exhibition-date" required />
+                    <select id="exhibition-category">
+                        <option value="past">Past</option>
+                        <option value="present">Present</option>
+                        <option value="future">Future</option>
+                    </select>
+                    <button type="button" onclick="addExhibition()">Add Exhibition</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+    
+    <footer>
+
+        <p>Alexis Miliotis, 2025 - University of Thessaly</p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
